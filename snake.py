@@ -39,6 +39,21 @@ class PointGenerator:
         return Point
 
 
+class SnakeUtils:
+    @staticmethod
+    def get_next_point(__Point, head, direction):
+        """ __Point is the point class obtained from generator,
+        head is point after which to look at the given direction """
+        if direction == Direction.LEFT:
+            return __Point(head.X - 1, head.Y)
+        elif direction == Direction.UP:
+            return __Point(head.X, head.Y - 1)
+        elif direction == Direction.RIGHT:
+            return __Point(head.X + 1, head.Y)
+        else:
+            return __Point(head.X, head.Y + 1)
+
+
 class Snake:
     """ This class holds the representation of snake and
     contains functions to manipulate the snake.
@@ -109,7 +124,6 @@ class Snake:
         assert point not in self.snake
         self.snake.append(point)
         self.__call_snake_grow_handler__(point)
-
 
     def __len__(self):
         return len(self.snake)
